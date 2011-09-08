@@ -1,0 +1,5 @@
+To Install edit tiny_mce_init.js
+
+Inside window.tinyMCE.init() look for the plugins and add encode to the list
+
+then add the commands encode and decode to your toolbar.
