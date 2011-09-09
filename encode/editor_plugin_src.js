@@ -970,8 +970,8 @@ var GibberishAES = (function(){
 					return output;
 				}
 				var getText = tinyMCE.activeEditor.getContent({format : 'raw'});
-				getText = getText.replace("</pre>","");
-				getText = getText.replace("<pre>","");
+				getText = getText.replace(/<\/pre>/g,"");
+				getText = getText.replace(/<pre>/g,"");
 				getText = '<pre>' + Encrypt(getText) + '</pre>';
 
 				tinyMCE.activeEditor.setContent(getText, {format : 'raw'});
@@ -988,16 +988,14 @@ var GibberishAES = (function(){
 					return output;
 				}
 				var getText = tinyMCE.activeEditor.getContent({format : 'raw'});
-				getText = getText.replace("<p>","");
-				getText = getText.replace("</p>","");
-				getText = getText.replace("</pre>","");
-				getText = getText.replace("<pre>","");
-				getText = getText.replace("<br />","");
-				getText = getText.replace("<br>","");
-				getText = getText.replace("<br/>","");
+				getText = getText.replace(/<p>/g,"");
+				getText = getText.replace(/<\/p>/g,"");
+				getText = getText.replace(/<\/pre>/g,"");
+				getText = getText.replace(/<pre>/g,"");
+				getText = getText.replace(/<br \/>/g,"");
+				getText = getText.replace(/<br>/g,"");
 				getText = unEncrypt(getText);
 				getText = '<pre>' + getText + '</pre>';
-				
 				tinyMCE.activeEditor.setContent(getText, {format : 'raw'});
 				
 
@@ -1005,14 +1003,14 @@ var GibberishAES = (function(){
 			
 			// Register encode button
 			ed.addButton('encode', {
-				title : 'encode.desc',
+				title : 'Encrypt This Text',
 				cmd : 'mceencode',
 				image : url + '/img/encode.gif'
 			});
 			
 			// Register encode button
 			ed.addButton('decode', {
-				title : 'decode.desc',
+				title : 'Decrypt This Text',
 				cmd : 'mcedecode',
 				image : url + '/img/decode.gif'
 			});
